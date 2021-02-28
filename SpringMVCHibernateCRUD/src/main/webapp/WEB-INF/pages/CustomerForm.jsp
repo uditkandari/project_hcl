@@ -15,12 +15,24 @@
         <table>
             <form:hidden path="id"/>
             <tr>
-                <td>Name:</td>
-                <td><form:input path="name" /></td>
+                <td>First Name:</td>
+                <td><form:input path="firstName" /></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><form:input path="lastName" /></td>
             </tr>
             <tr>
                 <td>Email:</td>
                 <td><form:input path="email" /></td>
+            </tr>
+            <tr>
+                <td>Username:</td>
+                <td><form:input path="username" /></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><form:input path="password" type="password"/></td>
             </tr>
             <tr>
                 <td>Address:</td>
@@ -30,8 +42,9 @@
                 <td>Telephone:</td>
                 <td><form:input path="telephone" /></td>
             </tr>
+            
             <tr>
-                <td colspan="2" align="center"><input type="submit" value="Save"></td>
+                <td colspan="2" align="center"><input type="submit" value="SignUp"></td>
             </tr>
         </table>
         </form:form>

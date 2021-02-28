@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jwt.model.Customer;
+import com.jwt.model.Login;
 import com.jwt.service.CustomerService;
 
 @Controller
@@ -29,7 +30,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/x")
 	public ModelAndView listCustomer(ModelAndView model) throws IOException {
 		List<Customer> listCustomer = customerService.getAllCustomer();
 		model.addObject("listCustomer", listCustomer);
@@ -71,6 +72,14 @@ public class CustomerController {
 		model.addObject("customer", customer);
 
 		return model;
+	}
+	
+	@RequestMapping(value = "/")
+	public ModelAndView signIn(ModelAndView model) throws IOException  {
+		Login login = new Login();
+		model.addObject("login", login);
+		model.setViewName("LoginForm");
+		return model;				
 	}
 
 }
