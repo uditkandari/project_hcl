@@ -1,5 +1,6 @@
 package com.jwt.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -14,9 +15,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void addCustomer(Customer customer) {
-		sessionFactory.getCurrentSession().saveOrUpdate(customer);
-
+	public int addCustomer(Customer customer) {
+		//sessionFactory.getCurrentSession().saveOrUpdate(customer);
+		int save = (int)sessionFactory.getCurrentSession().save(customer);
+		System.out.println("DK:-"+save);
+		return save;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -40,7 +43,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return (Customer) sessionFactory.getCurrentSession().get(
 				Customer.class, cusid);
 	}
-
+	public Customer getCustomer(Customer customer) {
+		return (Customer) sessionFactory.getCurrentSession().get(
+				Customer.class, customer);
+	}
 	@Override
 	public Customer updateCustomer(Customer customer) {
 		sessionFactory.getCurrentSession().update(customer);

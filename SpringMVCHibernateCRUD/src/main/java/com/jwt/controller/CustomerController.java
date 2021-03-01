@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jwt.model.Customer;
+import com.jwt.model.CustomerDto;
 import com.jwt.model.Login;
+import com.jwt.model.UserComment;
 import com.jwt.service.CustomerService;
+import com.jwt.service.LoginService;
 
 @Controller
 public class CustomerController {
@@ -29,30 +32,39 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private LoginService loginService;
 
-	@RequestMapping(value = "/x")
+	@RequestMapping(value = "/viewusers")
 	public ModelAndView listCustomer(ModelAndView model) throws IOException {
 		List<Customer> listCustomer = customerService.getAllCustomer();
 		model.addObject("listCustomer", listCustomer);
-		model.setViewName("home");
+		model.setViewName("viewusers");
 		return model;
 	}
 
 	@RequestMapping(value = "/newCustomer", method = RequestMethod.GET)
 	public ModelAndView newContact(ModelAndView model) {
-		Customer customer = new Customer();
+		//TODO have to ...
+		CustomerDto customer = new CustomerDto();
 		model.addObject("customer", customer);
 		model.setViewName("CustomerForm");
 		return model;
 	}
 
 	@RequestMapping(value = "/saveCustomer", method = RequestMethod.POST)
-	public ModelAndView saveCustomer(@ModelAttribute Customer customer) {
+	public ModelAndView saveCustomer(@ModelAttribute Customer customer, @ModelAttribute Login login) {
 		if (customer.getId() == 0) { // if employee id is 0 then creating the
 			// employee other updating the employee
-			customerService.addCustomer(customer);
+			
+			int cust_id = customerService.addCustomer(customer);
+			System.out.println("Cust_id="+customer.getId());
+			login.setCustomer_id(cust_id);
+			loginService.addLogin(login);
+//			System.out.println(login.getUsername());
 		} else {
 			customerService.updateCustomer(customer);
+			loginService.updateLogin(login);
 		}
 		return new ModelAndView("redirect:/");
 	}
@@ -73,13 +85,21 @@ public class CustomerController {
 
 		return model;
 	}
-	
-	@RequestMapping(value = "/")
-	public ModelAndView signIn(ModelAndView model) throws IOException  {
+
+	@RequestMapping(value = "/backtologin")
+	public ModelAndView backToLogin(ModelAndView model){
 		Login login = new Login();
 		model.addObject("login", login);
 		model.setViewName("LoginForm");
-		return model;				
+		return model;		
+	}
+
+	@RequestMapping(value = "/CustomerHome")
+	public ModelAndView customerHome(ModelAndView model){
+		UserComment userComment = new UserComment();
+		model.addObject("userComment", userComment);
+		model.setViewName("customerhome");
+		return model;		
 	}
 
 }

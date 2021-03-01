@@ -6,7 +6,7 @@ import com.jwt.model.Customer;
 
 public interface CustomerDAO {
 
-	public void addCustomer(Customer customer);
+	public int addCustomer(Customer customer);
 
 	public List<Customer> getAllCustomer();
 
@@ -15,4 +15,5 @@ public interface CustomerDAO {
 	public Customer updateCustomer(Customer customer);
 
 	public Customer getCustomer(int customerid);
+	public Customer getCustomer(Customer customer);
 }

@@ -20,8 +20,8 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	@Transactional
-	public void addCustomer(Customer customer) {
-		customerDAO.addCustomer(customer);
+	public int addCustomer(Customer customer) {
+		return customerDAO.addCustomer(customer);
 	}
 
 	@Override
@@ -38,6 +38,10 @@ public class CustomerServiceImpl implements CustomerService {
 
 	public Customer getCustomer(int cusid) {
 		return customerDAO.getCustomer(cusid);
+	}
+
+	public Customer getCustomer(Customer customer) {
+		return customerDAO.getCustomer(customer);
 	}
 
 	public Customer updateCustomer(Customer customer) {
