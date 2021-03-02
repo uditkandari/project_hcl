@@ -11,17 +11,15 @@
 <body>
 	<div align="center">
 		<h1>Customer List</h1>
-		<table border="1">	
-				
+		<table border="1">
 			<th>First Name</th>
 			<th>Last Name</th>
 			<th>Email</th>
 			<th>Address</th>
 			<th>Telephone</th>
 			<th>Action</th>
-
 			<c:forEach var="customer" items="${listCustomer}">
-				<tr>					
+				<tr>
 					<td>${customer.firstName}</td>
 					<td>${customer.lastName}</td>
 					<td>${customer.email}</td>
@@ -36,9 +34,8 @@
 		<h4>
 			New Customer Register <a href="newCustomer">here</a>
 		</h4>
-		<br><br>
-		<a href="backtologin">login page</a>
-		
+		<br> <br> <a href="backtologin">login page</a>
+
 	</div>
 </body>
 </html>

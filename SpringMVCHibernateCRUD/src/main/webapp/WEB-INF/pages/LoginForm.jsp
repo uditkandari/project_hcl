@@ -8,34 +8,36 @@
 <title>Login details</title>
 </head>
 <body>
-	<h2>WELCOME TO COMMENT REVIEW</h2>
-	<div>
+	<h2 align="center">WELCOME TO COMMENT REVIEW</h2>
+	<div align="center">
 		<form:form action="signinValidation" method="post"
 			modelAttribute="login">
 
 			<table>
-
 				<tr>
 					<td>CUSTOMER LOGIN</td>
 				</tr>
 				<tr>
-					<td>Username:</td>
-					<td><form:input path="username" type="text" placeholder="username"/></td>
+					<td><form:input path="username" type="text"
+							placeholder="Username" /></td>
 				</tr>
 				<tr>
-					<td>Password:</td>
-					<td><form:input path="password" type="password" placeholder="password"/></td>
+					<td><form:input path="password" type="password"
+							placeholder="Password" /></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="SignIn"></td>
-					<td><a href="newCustomer">SignUp</a></td>
+					<td align="center"><input type="submit" value="SignIn"></td>
+				</tr>
+				<tr>
+					<td align="center"><a href="newCustomer">SignUp</a></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><a href="viewusers">View
 							Users</a></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><a href="CustomerHome">customer home</a></td>
+					<td colspan="2" align="center"><a href="CustomerHome">Customer
+							Home</a></td>
 				</tr>
 			</table>
 		</form:form>
