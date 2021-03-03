@@ -7,7 +7,4 @@ import com.comment.analyser.model.TokenWords;
 public interface TokenWordDAO 
 {
 	List<TokenWords> getAllWords();
-	
-	
-	
 }

@@ -7,8 +7,61 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Customer Management Screen</title>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: silver;
+}
+
+.navigation {
+	overflow: hidden;
+	background-color: #333;
+}
+
+.navigation a {
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+.navigation a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+.navigation a.active {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.button {
+	background-color: gray;
+	border: none;
+	color: white;
+	padding: 10px 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 10px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
+	<div class="navigation">
+		<a href="backtologin">Login</a>
+	</div>
+	<br>
+	<br>
 	<div align="center">
 		<h1>Customer List</h1>
 		<table border="1">
@@ -31,11 +84,6 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<h4>
-			New Customer Register <a href="newCustomer">here</a>
-		</h4>
-		<br> <br> <a href="backtologin">login page</a>
-
 	</div>
 </body>
 </html>

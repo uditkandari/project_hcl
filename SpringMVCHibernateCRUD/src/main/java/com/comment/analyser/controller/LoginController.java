@@ -41,6 +41,7 @@ public class LoginController {
 			model.addObject("userComment", userComment);
 			return model;
 		} else {
+			model.addObject("loginError","failed to log in");
 			model.setViewName("LoginForm");
 			return model;
 		}

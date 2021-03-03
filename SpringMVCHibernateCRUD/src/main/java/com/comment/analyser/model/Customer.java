@@ -11,7 +11,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CUS_TBL")
+@Table(name = "CUSTOMER_TABLE")
 public class Customer implements Serializable {
 
 	private static final long serialVersionUID = -3465813074586302847L;
@@ -36,17 +36,6 @@ public class Customer implements Serializable {
 	@Column
 	private String telephone;
 	
-//	@OneToOne(targetEntity = Login.class, cascade = CascadeType.ALL)
-//	private Login loginDetails;
-
-//	public Login getLoginDetails() {
-//		return loginDetails;
-//	}
-//
-//	public void setLoginDetails(Login loginDetails) {
-//		this.loginDetails = loginDetails;
-//	}
-
 	public int getId() {
 		return id;
 	}

@@ -52,6 +52,22 @@ public class CustomerController {
 		return model;
 	}
 
+//	@RequestMapping(value = "/saveCustomer", method = RequestMethod.POST)
+//	public ModelAndView saveCustomer(@ModelAttribute Customer customer, @ModelAttribute Login login) {
+//		if (customer.getId() == 0) { 
+//			// if employee id is 0 then creating the
+//			// employee other updating the employee
+//			int cust_id = customerService.addCustomer(customer);
+//			System.out.println("Cust_id="+customer.getId());
+//			login.setCustomer_id(cust_id);
+//			loginService.addLogin(login);
+//		} else {
+//			customerService.updateCustomer(customer);
+//			loginService.updateLogin(login);
+//		}
+//		return new ModelAndView("redirect:/");
+//	}
+	
 	@RequestMapping(value = "/saveCustomer", method = RequestMethod.POST)
 	public ModelAndView saveCustomer(@ModelAttribute Customer customer, @ModelAttribute Login login) {
 		if (customer.getId() == 0) { 
@@ -111,5 +127,15 @@ public class CustomerController {
 		model.setViewName("customerHome");
 		return model;		
 	}
+	@RequestMapping(value = "/contact")
+	public ModelAndView contact(ModelAndView model){		
+		model.setViewName("contact");
+		return model;		
+	}
 
+	@RequestMapping(value = "/about")
+	public ModelAndView about(ModelAndView model){		
+		model.setViewName("about");
+		return model;		
+	}
 }

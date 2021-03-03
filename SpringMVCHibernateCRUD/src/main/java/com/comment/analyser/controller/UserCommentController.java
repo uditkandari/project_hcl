@@ -29,9 +29,8 @@ public class UserCommentController
 	public ModelAndView postComment(@ModelAttribute UserComment userComment, ModelAndView model) 
 	{
 		userCommentService.addComment(userComment);
-//		model.setViewName("customerHome");
-//		return model;
-		return new ModelAndView("redirect:/");
+		model.setViewName("customerHome");
+		return model;
 	}
 
 	@RequestMapping(value = "/analysis")

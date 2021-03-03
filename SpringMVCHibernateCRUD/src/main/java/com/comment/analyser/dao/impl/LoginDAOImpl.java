@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +18,8 @@ public class LoginDAOImpl implements LoginDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	private static final Logger logger = Logger.getLogger(LoginDAOImpl.class);
+	
 	@Override
 	public void addLogin(Login login) {
 		sessionFactory.getCurrentSession().saveOrUpdate(login);
@@ -25,11 +28,13 @@ public class LoginDAOImpl implements LoginDAO {
 	@Override
 	public List<Login> getAllLogin() {
 		// TODO Auto-generated method stub
+		logger.debug("--Log-Debug--Returning list of Login details--");
 		return sessionFactory.getCurrentSession().createQuery("from Login").list();
 	}
 
 	@Override
 	public Login getLogin(Login login) {
+		logger.debug("--Log-Debug--Valaditing username and password with the database--");
 		Query query = sessionFactory.getCurrentSession().createQuery("from Login where username=:userName and password = :password")
 				.setParameter("userName", login.getUsername())
 				.setParameter("password", login.getPassword());
@@ -44,6 +49,7 @@ public class LoginDAOImpl implements LoginDAO {
 
 		if (null != login) {
 			this.sessionFactory.getCurrentSession().delete(login);
+			logger.info("--Log-Info--Deleted login details--");
 		}
 	}
 
@@ -55,7 +61,9 @@ public class LoginDAOImpl implements LoginDAO {
 
 	@Override
 	public Login updateLogin(Login login) {
+		logger.debug("--Log-Debug--Updating login--");
 		sessionFactory.getCurrentSession().update(login);
+		
 		return login;
 	}
 

@@ -3,6 +3,7 @@ package com.comment.analyser.dao.impl;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,10 +16,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	private static final Logger logger = Logger.getLogger(LoginDAOImpl.class);
+	
 	public int addCustomer(Customer customer) {
-		//sessionFactory.getCurrentSession().saveOrUpdate(customer);
 		int save = (int)sessionFactory.getCurrentSession().save(customer);
-		System.out.println("UK:-"+save);
 		return save;
 	}
 
@@ -36,7 +37,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 		if (null != customer) {
 			this.sessionFactory.getCurrentSession().delete(customer);
 		}
-
 	}
 
 	public Customer getCustomer(int cusid) {
