@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.comment.analyser.dao.TokenWordDAO;
 import com.comment.analyser.model.TokenWords;
-import com.comment.analyser.model.UserComment;
 
 @Repository
 @Transactional

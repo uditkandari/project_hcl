@@ -11,40 +11,41 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Token_Words")
-public class TokenWords implements Serializable 
-{
+public class TokenWords implements Serializable {
+
+	private static final long serialVersionUID = 4651510366078701234L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	@Column
 	private String token;
-	
+
 	@Column
 	private int weightage;
-	
-	public int getId() 
-	{
+
+	public int getId() {
 		return id;
 	}
-	public void setId(int id) 
-	{
+
+	public void setId(int id) {
 		this.id = id;
 	}
-	public String getToken() 
-	{
+
+	public String getToken() {
 		return token;
 	}
-	public void setToken(String token) 
-	{
-		token = token;
+
+	public void setToken(String token) {
+		this.token = token;
 	}
-	public int getWeightage()
-	{
+
+	public int getWeightage() {
 		return weightage;
 	}
-	public void setWeightage(int weightage) 
-	{
+
+	public void setWeightage(int weightage) {
 		this.weightage = weightage;
-	}	
+	}
 }

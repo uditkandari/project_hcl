@@ -51,12 +51,10 @@
 		<table border="1" class="comment-table">
 			<th>Comments</th>
 			<th>Rating</th>
-			<th>Commented by</th>
 			<c:forEach var="userComment" items="${listComment}">
 				<tr>
 					<td>${userComment.userComment}</td>
-					<td>${userComment.commentValue}</td>
-					<td>${userComment.commentedBy}</td>
+					<td align="center">${userComment.commentValue}</td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -2,7 +2,6 @@ package com.comment.analyser.dao;
 
 import java.util.List;
 
-import com.comment.analyser.model.Customer;
 import com.comment.analyser.model.UserComment;
 
 public interface UserCommentDAO 

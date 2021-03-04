@@ -1,35 +1,42 @@
 package com.comment.analyser.processing;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.easymock.EasyMock;
-import org.easymock.Mock;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import com.comment.analyser.dao.TokenWordDAO;
 import com.comment.analyser.dao.UserCommentDAO;
-import com.comment.analyser.dao.impl.TokenWordDAOImpl;
 import com.comment.analyser.model.TokenWords;
 import com.comment.analyser.model.UserComment;
 
+@RunWith(MockitoJUnitRunner.class)
 public class CommentAnalyserTest {
+	
 	@Mock
 	TokenWordDAO tokenWordsDAO;
+	
+	@Mock
+	UserCommentDAO userCommentDAO;
+
+	@InjectMocks
+	CommentAnalyser analyzer;
 	
 	@Test
 	public void testProcessComment() 
 	{
-		//TokenWordDAO tokenWordsDAO = EasyMock.createMock(TokenWordDAO.class);
-		EasyMock.replay(tokenWordsDAO);
-		EasyMock.expect(tokenWordsDAO.getAllWords()).andReturn(getTockenWords());
-		//EasyMock.replay(tokenWordsDAO);
 		UserComment userComment= geUserComment() ;
-		UserCommentDAO userCommentDAO = EasyMock.createMock(UserCommentDAO.class);
-		EasyMock.expect(userCommentDAO.updateUserComment(userComment)).andReturn(null);
-		CommentAnalyser analyzer = new CommentAnalyser();
+		Mockito.when(tokenWordsDAO.getAllWords()).thenReturn(getTockenWords());
+		Mockito.when(userCommentDAO.updateUserComment(userComment)).thenReturn(userComment);
 		analyzer.processComment(userComment);
-		System.out.println(userComment.getCommentValue());
+		assertEquals(4, userComment.getCommentValue());
 	}
 	private List<TokenWords> getTockenWords(){
 		List<TokenWords> list = new ArrayList<>();
@@ -48,7 +55,7 @@ public class CommentAnalyserTest {
 	
 	private UserComment geUserComment() {
 		UserComment userComment = new UserComment();
-		userComment.setUserComment("I am very happy Today");
+		userComment.setUserComment("I am very Good Today");
 		return userComment;
 	}
 }

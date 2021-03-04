@@ -2,16 +2,6 @@ package com.comment.analyser.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-
 public class CustomerDto implements Serializable {
 
 	private static final long serialVersionUID = -3465813074586302847L;
@@ -26,7 +16,7 @@ public class CustomerDto implements Serializable {
 
 	private String address;
 
-	private String telephone;
+	private long telephone;
 	
 	private String username;
 	
@@ -62,10 +52,10 @@ public class CustomerDto implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getTelephone() {
+	public long getTelephone() {
 		return telephone;
 	}
-	public void setTelephone(String telephone) {
+	public void setTelephone(long telephone) {
 		this.telephone = telephone;
 	}
 	public String getUsername() {

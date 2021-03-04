@@ -71,7 +71,7 @@ background-color: gray;
 	</div><br><br>
 
 	<div align="center">
-		<h3>WELCOME TO COMMENT REVIEW</h3>
+		<h3>WELCOME TO COMMENT REVIEW ${user_session}</h3>
 		<br><br>
 		<form:form action="postcomment" method="post"
 			modelAttribute="userComment">

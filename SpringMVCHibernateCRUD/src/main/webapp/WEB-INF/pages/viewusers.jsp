@@ -54,6 +54,14 @@ body {
 	margin: 4px 2px;
 	cursor: pointer;
 }
+.user-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
 </style>
 </head>
 <body>
@@ -64,7 +72,7 @@ body {
 	<br>
 	<div align="center">
 		<h1>Customer List</h1>
-		<table border="1">
+		<table border="1" class="user-table">
 			<th>First Name</th>
 			<th>Last Name</th>
 			<th>Email</th>

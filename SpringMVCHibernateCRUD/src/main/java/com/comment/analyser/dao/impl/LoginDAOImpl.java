@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.comment.analyser.dao.LoginDAO;
-import com.comment.analyser.model.Customer;
 import com.comment.analyser.model.Login;
 
 @Repository
@@ -34,12 +33,13 @@ public class LoginDAOImpl implements LoginDAO {
 
 	@Override
 	public Login getLogin(Login login) {
-		logger.debug("--Log-Debug--Valaditing username and password with the database--");
+		logger.debug("Valaditing username and password with the database");
 		Query query = sessionFactory.getCurrentSession().createQuery("from Login where username=:userName and password = :password")
 				.setParameter("userName", login.getUsername())
 				.setParameter("password", login.getPassword());
 		
-		Login userLogin =(Login) query.uniqueResult();
+		Login userLogin =(Login) query.uniqueResult();	
+		logger.debug("return unique login details or null");
 		return userLogin;
 	}
 

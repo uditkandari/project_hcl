@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.jboss.logging.Logger;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,14 +21,9 @@ import com.comment.analyser.service.CustomerService;
 import com.comment.analyser.service.LoginService;
 
 @Controller
-public class CustomerController {
+public class CustomerController { 
 
-	private static final Logger logger = Logger
-			.getLogger(CustomerController.class);
-
-	public CustomerController() {
-		System.out.println("CustomerController()");
-	}
+	private static final Logger logger = Logger.getLogger(CustomerController.class);
 
 	@Autowired
 	private CustomerService customerService;
@@ -36,64 +31,59 @@ public class CustomerController {
 	private LoginService loginService;
 
 	@RequestMapping(value = "/viewusers")
-	public ModelAndView listCustomer(ModelAndView model) throws IOException {
+	public ModelAndView showCustomerList(ModelAndView model) throws IOException {
+		logger.trace("CustomerController showCustomerList start");
 		List<Customer> listCustomer = customerService.getAllCustomer();
 		model.addObject("listCustomer", listCustomer);
 		model.setViewName("viewusers");
+		logger.trace("CustomerController showCustomerList end");
 		return model;
 	}
 
 	@RequestMapping(value = "/newCustomer", method = RequestMethod.GET)
-	public ModelAndView newContact(ModelAndView model) {
-		//TODO have to ...
+	public ModelAndView addNewContact(ModelAndView model) {
+		logger.trace("CustomerController addNewContact start");
 		CustomerDto customer = new CustomerDto();
 		model.addObject("customer", customer);
 		model.setViewName("customerForm");
+		logger.trace("CustomerController addNewContact start");
 		return model;
 	}
 
-//	@RequestMapping(value = "/saveCustomer", method = RequestMethod.POST)
-//	public ModelAndView saveCustomer(@ModelAttribute Customer customer, @ModelAttribute Login login) {
-//		if (customer.getId() == 0) { 
-//			// if employee id is 0 then creating the
-//			// employee other updating the employee
-//			int cust_id = customerService.addCustomer(customer);
-//			System.out.println("Cust_id="+customer.getId());
-//			login.setCustomer_id(cust_id);
-//			loginService.addLogin(login);
-//		} else {
-//			customerService.updateCustomer(customer);
-//			loginService.updateLogin(login);
-//		}
-//		return new ModelAndView("redirect:/");
-//	}
-	
 	@RequestMapping(value = "/saveCustomer", method = RequestMethod.POST)
 	public ModelAndView saveCustomer(@ModelAttribute Customer customer, @ModelAttribute Login login) {
-		if (customer.getId() == 0) { 
-			// if employee id is 0 then creating the
-			// employee other updating the employee
+		logger.trace("CustomerController saveCustomer start");
+		logger.debug("if employee id is 0 then creating the employee otherwise updating the employee");
+		if (customer.getId() == 0)
+		{
 			int cust_id = customerService.addCustomer(customer);
-			System.out.println("Cust_id="+customer.getId());
+			logger.debug("Cust_id=" + customer.getId());
 			login.setCustomer_id(cust_id);
 			loginService.addLogin(login);
-		} else {
+		} 
+		else 
+		{
 			customerService.updateCustomer(customer);
 			loginService.updateLogin(login);
 		}
+		logger.trace("CustomerController saveCustomer end");
 		return new ModelAndView("redirect:/");
 	}
 
+
 	@RequestMapping(value = "/deleteCustomer", method = RequestMethod.GET)
 	public ModelAndView deleteCustomer(HttpServletRequest request) {
+		logger.trace("CustomerController deleteCustomer start");
 		int customerId = Integer.parseInt(request.getParameter("id"));
 		customerService.deleteCustomer(customerId);
 		loginService.deleteLogin(customerId);
+		logger.trace("CustomerController deleteCustomer end");
 		return new ModelAndView("redirect:/");
 	}
 
 	@RequestMapping(value = "/editCustomer", method = RequestMethod.GET)
 	public ModelAndView editContact(HttpServletRequest request) {
+		logger.trace("CustomerController editContact start");
 		int customerId = Integer.parseInt(request.getParameter("id"));
 		Customer customer = customerService.getCustomer(customerId);
 		Login login = loginService.getLogin(customerId);
@@ -108,34 +98,43 @@ public class CustomerController {
 		customerDto.setTelephone(customer.getTelephone());
 		ModelAndView model = new ModelAndView("customerForm");
 		model.addObject("customer", customerDto);
-
+		logger.trace("CustomerController editContact end");
 		return model;
 	}
 
 	@RequestMapping(value = "/backtologin")
-	public ModelAndView backToLogin(ModelAndView model){
+	public ModelAndView backToLogin(ModelAndView model) {
+		logger.trace("CustomerController backToLogin start");
 		Login login = new Login();
 		model.addObject("login", login);
 		model.setViewName("LoginForm");
-		return model;		
+		logger.trace("CustomerController backToLogin end");
+		return model;
 	}
 
 	@RequestMapping(value = "/CustomerHome")
-	public ModelAndView customerHome(ModelAndView model){
+	public ModelAndView gotoCustomerHome(ModelAndView model) {
+		logger.trace("CustomerController customerHome start");
 		UserComment userComment = new UserComment();
 		model.addObject("userComment", userComment);
 		model.setViewName("customerHome");
-		return model;		
+		logger.trace("CustomerController backToLogin end");
+		return model;
 	}
+
 	@RequestMapping(value = "/contact")
-	public ModelAndView contact(ModelAndView model){		
+	public ModelAndView seeContactInfo(ModelAndView model) {
+		logger.trace("CustomerController seeContactInfo start");
 		model.setViewName("contact");
-		return model;		
+		logger.trace("CustomerController seeContactInfo end");
+		return model;
 	}
 
 	@RequestMapping(value = "/about")
-	public ModelAndView about(ModelAndView model){		
+	public ModelAndView seeAboutInfo(ModelAndView model) {
+		logger.trace("CustomerController seeAboutInfo start");
 		model.setViewName("about");
-		return model;		
+		logger.trace("CustomerController seeAboutInfo end");
+		return model;
 	}
 }

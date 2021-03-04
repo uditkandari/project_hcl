@@ -8,20 +8,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
 @Table(name = "Login_Details")
 public class Login implements Serializable{
 	
+	private static final long serialVersionUID = 1660550742279784377L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@Column
+	@NotNull(message = "cannot be null")
 	private String username;
 
 	@Column
+	@NotNull(message = "cannot be null")
 	private String password;
 	
 	@Column

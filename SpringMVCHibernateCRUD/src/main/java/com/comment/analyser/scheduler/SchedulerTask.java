@@ -24,10 +24,9 @@ public class SchedulerTask {
 	private static final Logger logger = Logger.getLogger(SchedulerTask.class);
 
 	@Scheduled(fixedRate = 30000)
-	public void startProcessing() {
+	public void startProcessing() 
+	{
 		logger.debug("Start processing all unprocessed comments");
-		// get all unprocessed data
-		// in for loop call the
 		List<UserComment> unprocessedData = userCommentDAO.getUnprocessedComments();
 
 		for (UserComment userComment : unprocessedData) {
